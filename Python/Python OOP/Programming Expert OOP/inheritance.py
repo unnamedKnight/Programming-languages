@@ -1,9 +1,6 @@
 """
 In OOP a child can access parent class's methods but a parent class cannot
 access childe class method.
-
-
-
 """
 
 # - In the following example if we try to access say_hello method from a Employee instance
@@ -28,5 +25,22 @@ class Employee(Person):
         # we can invoke parent class __init__ method by doing the following
         # we need send all the parameters that is required in the parent __init__ method
         # Except self
+        # using super means manually calling the parent method(that is associated with super)
         super().__init__(first_name, last_name)
         self.salary = salary
+
+
+# - The following inheritance means that any manager
+# - is an Employee and also a Person
+# - Which means any Manager instance is also an instance of
+# - Employee and Person class technically
+class Manager(Employee):
+    def __init__(self, first_name, last_name, salary, department) -> None:
+        super().__init__(first_name, last_name, salary)
+        self.department = department
+
+
+class Owner(Person):
+    def __init__(self, first_name, last_name, net_worth) -> None:
+        super().__init__(first_name, last_name)
+        self.net_worth = net_worth
