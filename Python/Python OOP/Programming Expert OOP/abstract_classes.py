@@ -11,8 +11,15 @@ other classes in the program.
 # - Here, we know that we cannot access child method from parent class
 # - Because inheritance works from parent to child and not from child to parent.
 # - But the following code works even when we call reset method from the parent class.
-# - One possible explanation is that,
-
+# - One possible explanation is
+# - the object we are using is associated with RandomGuesser class
+# - So, when we are invoking reset method from parent class
+# - since the object is associated with RandomGuesser class, when the parent is invoking the reset method
+# - parent class's reset method is not getting invoked
+# - But the child class's reset method is getting invoked
+# - Because the object we are working with is associated with RandomGuesser class
+# - which is a child class of AbstractGame.
+# - Which is why may be the child reset method is getting invoked
 
 
 import random
@@ -34,6 +41,7 @@ class AbstractGame:
         raise NotImplementedError("You must provide an implementation for play")
 
     def reset(self):
+        print('i am getting invoked')
         raise NotImplementedError("You must provide an implementation for reset")
 
 
@@ -42,9 +50,9 @@ class RandomGuesser(AbstractGame):
         self.rounds = rounds
         self.round = 0
 
-    # def reset(self):
-    #     print('reset done')
-    #     self.round = 0
+    def reset(self):
+        print('reset done')
+        self.round = 0
 
     def play(self):
         while self.round < self.rounds:
@@ -52,15 +60,14 @@ class RandomGuesser(AbstractGame):
 
             print(f"Welcome to round {self.round}. Let's begin!")
 
-            random_num = random.randint(0, 10)
+            random_num = random.randint(0, 2)
             while True:
-                guess = input(
-                    'Enter a number between 1 to 10: '
-                )
+                guess = input("Enter a number between 1 to 10: ")
                 if int(guess) == random_num:
-                    print('You got it')
+                    print("You got it")
                     break
         self.end()
+
 
 game = RandomGuesser(1)
 game.start()
