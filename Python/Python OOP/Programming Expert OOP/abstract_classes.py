@@ -22,6 +22,27 @@ other classes in the program.
 # - Which is why may be the child reset method is getting invoked
 
 
+# ---------------------------------- SUMMARY --------------------------------- #
+# - lets say we have two same methods in parent and child class just like the following
+# - Now , we create an instance of the child class
+# - Now, at some point we will invoke that same method from parent class
+# - and the control of the program at that moment will be in parent class.
+# - but when we call that method which in this case `reset` method
+# - it will not invoke the parent class's reset method but it will invoke the child class's reset method
+# - although the control of the program is within the parent class
+# - The explanation of this behaviour is
+# - since the object is associated with child class in this case RandomGuesser
+# - so when reset method is invoked from the parent class in this case AbstractGame
+# - the program will first look into objects own class
+# - to check if there is any method named  `reset` available in its own class
+# - In this case the objects own class is RandomGuesser
+# - if there is, it will execute if from there
+# - if that respective method is not available in its own class
+# - then it will look into its parent class
+# - which is why although we invoked `reset` method within the parent class
+# - the child class's `reset` method got executed instead of parent class's `reset` method
+# ------------------------------------ end ----------------------------------- #
+
 import random
 
 
@@ -41,7 +62,6 @@ class AbstractGame:
         raise NotImplementedError("You must provide an implementation for play")
 
     def reset(self):
-        print('i am getting invoked')
         raise NotImplementedError("You must provide an implementation for reset")
 
 
@@ -51,7 +71,6 @@ class RandomGuesser(AbstractGame):
         self.round = 0
 
     def reset(self):
-        print('reset done')
         self.round = 0
 
     def play(self):
