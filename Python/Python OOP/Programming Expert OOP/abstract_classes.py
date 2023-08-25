@@ -3,6 +3,8 @@ An abstract class is just a class that never has any (direct) instance of it.
 Its a class that never should be instantiated.
 An abstract class in meant to act as base class/ parent class to
 other classes in the program.
+An abstract class can implement its own attributes
+And methods like instance methods, static methods, class methods and also abstract methods.
 """
 
 # - An abstract method is a method that is not implemented by the abstract class
