@@ -62,3 +62,5 @@ print(discounted_bread.after_tax_price)
 # ------------------------------------ end ----------------------------------- #
 
 
+# - if we want to overload division operation we have to override __truediv__
+# - if we want to overload floor division operation we have to override __floordiv__
