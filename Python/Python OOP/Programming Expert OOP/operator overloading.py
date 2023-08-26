@@ -64,3 +64,9 @@ print(discounted_bread.after_tax_price)
 
 # - if we want to overload division operation we have to override __truediv__
 # - if we want to overload floor division operation we have to override __floordiv__
+
+
+#- We use __str__ for human readable string representation of our objects
+# - it is something that humans can read
+
+
