@@ -20,21 +20,24 @@ decorators are actually functions that is used to call another function.
 # - We need use *args and **kwargs as the parameter of the function that we are calling inside wrapper function.
 
 
-def decorator(func):
-    def wrapper(*args, **kwargs):
-        print("Wrapper function called func ")
-        result = func(*args, **kwargs)
-        return None
+# ----------------------------- decorator example ---------------------------- #
+# def decorator(func):
+#     def wrapper(*args, **kwargs):
+#         print("Wrapper function called func ")
+#         result = func(*args, **kwargs)
+#         return None
 
-    return wrapper
-
-
-@decorator
-def func(x):
-    return x
+#     return wrapper
 
 
-print(func(1))
+# @decorator
+# def func(x):
+#     return x
+
+
+# print(func(1))
+
+# ------------------------------------ end ----------------------------------- #
 
 # - another way of calling the decorator is
 
@@ -48,3 +51,25 @@ print(func(1))
 # - Now, decorator returns the wrapper
 # - And then we execute the wrapper with func arguments
 
+
+# ------------------------------ timer decorator ----------------------------- #
+
+import time
+
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        print(result)
+        end_time = time.time()
+        return end_time - start_time
+
+    return wrapper
+
+@timer
+def test():
+    print('Hello world')
+
+
+print(test())
