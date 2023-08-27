@@ -20,3 +20,12 @@ Python Files
 # - when we do file.read(), the cursor's position is at the end of the file.
 # - Because file.read() reads the whole file, so cursor stays at the end of the file.
 # - But we can change cursor position manually with file.seek() method
+
+# - We can print the contents of the file with a for loop like following:
+# - for line in file:
+# -         print(line)
+
+
+# - We can also just read some characters from our file
+# - For example : file.read(5)
+# - The command above will read first 5 characters from the file
