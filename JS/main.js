@@ -6,3 +6,4 @@
 
 
 alert('its working.');
+console.log('hello world');
