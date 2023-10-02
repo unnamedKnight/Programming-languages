@@ -1,11 +1,15 @@
 console.log("we are good");
 
-function rollYourDice() {
-    randomNumber = 0
-    while (randomNumber === 0){
-        randomNumber= Math.floor(Math.random() * 7)
+function isPangram(sentence) {
+    let allLetters = 'abcdefghijklmnopqrstuvwxyz'
+    for (letter of sentence){
+        if (allLetters.indexOf(letter.toLowerCase()) !== -1){
+            allLetters = allLetters.replace(letter.toLowerCase(), '')
+        }
     }
-    return randomNumber
+    return result = allLetters.length > 0 ? false : true;
 }
 
-console.log(rollYourDice())
+// console.log(isPangram('The five boxing wizards jumps quick'))
+console.log(isPangram('The five boxing wizards jumps quickly'))
+
