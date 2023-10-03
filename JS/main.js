@@ -1,15 +1,15 @@
 console.log("we are good");
 
-function isPangram(sentence) {
-    let allLetters = 'abcdefghijklmnopqrstuvwxyz'
-    for (letter of sentence){
-        if (allLetters.indexOf(letter.toLowerCase()) !== -1){
-            allLetters = allLetters.replace(letter.toLowerCase(), '')
-        }
-    }
-    return result = allLetters.length > 0 ? false : true;
+function getCard() {
+  const cardList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+  const suitList = ["clubs", "spades", "hearts", "diamonds"];
+  let randomCard = Math.floor(Math.random() * cardList.length);
+  console.log(randomCard);
+  let randomSuit = Math.floor(Math.random() * suitList.length);
+  return {
+    value: cardList[randomCard],
+    suit: suitList[randomSuit],
+  };
 }
 
-// console.log(isPangram('The five boxing wizards jumps quick'))
-console.log(isPangram('The five boxing wizards jumps quickly'))
-
+console.log(getCard());
