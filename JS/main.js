@@ -1,2 +1,2 @@
-console.log("we are good");
+console.log('We are good')
 
