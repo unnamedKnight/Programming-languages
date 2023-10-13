@@ -84,3 +84,33 @@ const warriorsGames = [
     },
   },
 ];
+
+const makeChart = (gameData, targetTeam) => {
+  const ul = document.createElement("ul");
+
+  for (game of gameData) {
+    const li = document.createElement("li");
+    li.innerHTML = getScoreLine(game);
+    li.classList.add(isWinner(game, targetTeam));
+    ul.append(li);
+  }
+  return ul;
+};
+
+const getScoreLine = ({ homeTeam, awayTeam }) => {
+  const teamNames = `${awayTeam.team} @ ${homeTeam.team} `;
+  const { points: hPoints } = homeTeam;
+  const { points: aPoints } = awayTeam;
+  if (aPoints > hPoints) {
+    return `${teamNames} <b>${awayTeam.points}</b> - ${homeTeam.points}`;
+  }
+  return `${teamNames} ${awayTeam.points} - <b>${homeTeam.points}</b>`;
+};
+
+const isWinner = ({ homeTeam, awayTeam }, targetTeam) => {
+  const warriors = homeTeam.team === targetTeam ? homeTeam : awayTeam;
+  return warriors.isWinner ? "win" : "loss";
+};
+
+const chart1 = makeChart(warriorsGames, "Golden State");
+document.body.append(chart1);
