@@ -17,6 +17,20 @@ console.log("We are good !!!");
 /* -------------------------------------------------------------------------- */
 
 
+/* ----------------- creating an element in the DOM ----------------- */
+
+const ul = document.querySelector('ul')
+const li = document.querySelector('li')
+
+const newLi = document.createElement('li')
+// newLi is the element that we want to insert before li
+newLi.innerText = 'I am a new li'
+
+// inserting new li before the first element in the ul
+// here, newLi is what we are inserting
+// and li is what we are inserting before
+ul.insertBefore(newLi, li)
 
 
-
+const test = () => console.log('just a  test')
+test()
