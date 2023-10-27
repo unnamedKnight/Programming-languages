@@ -23,6 +23,7 @@ class Timer {
   tick = () => {
     if (this.timeRemaining < 1) {
       this.pause();
+      this.onComplete()
     }
     // calling the getter method
     else {
@@ -30,6 +31,7 @@ class Timer {
       // the following code will call the setter like following
       // timeRemaining( const timeRemaining - 1)
       this.timeRemaining = getTime - 1;
+      this.onTick()
     }
   };
 
@@ -55,6 +57,10 @@ const timer = new Timer(durationInput, startButton, pauseButton, {
     console.log("timer started");
   },
 
-  onTic() {},
-  onComplete() {},
+  onTick() {
+    console.log("timer is ticking");
+  },
+  onComplete() {
+    console.log("timer completed");
+  },
 });
