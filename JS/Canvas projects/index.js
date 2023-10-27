@@ -8,14 +8,14 @@ class Timer {
       this.onTick = callbacks.onTick;
       this.onComplete = callbacks.onComplete;
     }
-    this.intervalId = null;
+    this.intervalId = 0;
     this.startButton.addEventListener("click", this.start);
     this.pauseButton.addEventListener("click", this.pause);
   }
 
   start = () => {
-    if (typeof this.intervalId !== "number") {
-      this.intervalId = setInterval(this.tick, 1000);
+    if (this.intervalId >= 0) {
+      this.intervalId = setInterval(this.tick, 50);
       if (this.onStart) this.onStart();
     }
   };
@@ -30,7 +30,7 @@ class Timer {
       const getTime = this.timeRemaining;
       // the following code will call the setter like following
       // timeRemaining( const timeRemaining - 1)
-      this.timeRemaining = getTime - 1;
+      this.timeRemaining = getTime - 0.05;
       this.onTick()
     }
   };
@@ -51,6 +51,12 @@ class Timer {
 const durationInput = document.querySelector("#duration");
 const startButton = document.querySelector("#start");
 const pauseButton = document.querySelector("#pause");
+const circle = document.querySelector('circle')
+
+const perimeter = circle.getAttribute('r') * 2 * Math.PI
+circle.setAttribute('stroke-dasharray', perimeter) 
+
+let current_offset = 0;
 
 const timer = new Timer(durationInput, startButton, pauseButton, {
   onStart() {
@@ -58,7 +64,8 @@ const timer = new Timer(durationInput, startButton, pauseButton, {
   },
 
   onTick() {
-    console.log("timer is ticking");
+    circle.setAttribute('stroke-dashoffset', current_offset )
+    current_offset = current_offset - 1
   },
   onComplete() {
     console.log("timer completed");
